@@ -12,7 +12,7 @@ export const HW3 = () => {
 
 
   const [currentText, setCurrentText] = useState('');
-let [texts, setTexts] = useState<string[]>([
+const [texts, setTexts] = useState<string[]>([
   'То, что вы делаете по ночам, то и делает вас богатым. (Аль Капоне)',
 ]);
 
@@ -23,14 +23,12 @@ const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 const handleSave = () => {
   setTexts((prevTexts) => [...prevTexts, currentText]);
   setCurrentText('');
-// ЗАСЕТАТЬ БЫ ТЕКСТ В texts И НЕ ПОТЕРЯТЬ НАПУТСТВИЕ ИЗ ПРОШЛОГО ВЕКА)
-// А ЗАТЕМ УБРАТЬ ЗА СОБОЙ В currentText
 };
 
 return (
   <div id={'hw03'}>
     {currentText ? (
-      <h1 id={'hw03-text'}>ЗДЕСЬ ХОТЕЛОСЬ БЫ УВИДЕТЬ ВВОДИМЫЙ ТЕКСТ</h1>
+      <h1 id={'hw03-text'}>{currentText}</h1>
     ) : (
       <h1 id={'hw03-default-text'}>Здесь появится новое дело</h1>
     )}
@@ -44,13 +42,11 @@ return (
     <h1 style={{ marginTop: '50px' }}>СПИСОК ДЕЛ НА ДЕНЬ:</h1>
 
     <ol id={'hw03-tasks'}>
-      {texts.map((el, index) => {
-        return (
-          <li key={index} id={`hw03-task-${index}`}>
-            {el}
-          </li>
-        );
-      })}
+      {texts.map((el, index) => (
+        <li key={index} id={`hw03-task-${index}`}>
+          {el}
+        </li>
+      ))}
     </ol>
   </div>
 );}
